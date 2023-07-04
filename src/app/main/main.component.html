@@ -1,0 +1,50 @@
+<section>
+    <h1>Hi! Say something here.</h1>
+
+    <div class="tasks" *ngIf="author && !author.hadPayoff">
+        <p>You can earn 0.0001 ethers after creating 3 posts.</p>
+        <ng-container *ngIf="author.totalPosts > 2">
+            <button class="gift" (click)="payoff()">🎁</button>
+        </ng-container>
+
+        <div class="progress">
+            <ng-container *ngFor="let t of ['1️⃣', '2️⃣', '3️⃣']; index as i">
+                <div [id]="'task'+(i+1)" class="task" [ngClass]="{'complete' : author.totalPosts > i }">{{ t }}</div>
+            </ng-container>
+        </div>
+        
+    </div>
+
+    <div class="wallet">
+        <ng-container *ngIf="Ethereum; else downloadMetaMask">
+            <ng-container *ngIf="isNetworkValid; else invalidNetwork">
+                <button (click)="connectWallet()" [disabled]="walletAddress">Connect Wallet</button>
+            </ng-container>
+            <ng-template #invalidNetwork>
+                <button (click)="switchNetwork()">Switch Network</button>
+            </ng-template>
+        </ng-container>
+
+        <ng-template #downloadMetaMask>Please download
+            <a href="https://metamask.io/download" target="_blank" rel="noopener noreferrer">MetaMask🦊</a>
+        </ng-template>
+    </div>
+
+    <div class="posts">
+        <section class="post-create">
+            <div class="stickers">
+                <ng-container *ngFor="let stk of stickers">
+                    <button (click)="content.value = content.value + stk">{{stk}}</button>
+                </ng-container>
+            </div>
+            <div class="field">
+                <textarea #content placeholder="✏️Write something..."></textarea>
+                <button [disabled]="!walletAddress" (click)="createPost(content.value)">💾</button>
+            </div>
+        </section>
+
+        <ng-container *ngFor="let post of postList">
+            <app-post class="post" [post]="post" (onSave)="updatePost($event)" (onDelete)="deletePost($event)" (likeBtnClick)="like($event)"></app-post>
+        </ng-container>
+    </div>
+</section>

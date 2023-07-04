@@ -1,0 +1,27 @@
+.post {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 1em;
+}
+
+section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content {
+    margin: 1em 0;
+}
+.content textarea {
+    width: 100%;
+    resize: vertical;
+}
+
+.interact .ctrl button:not(:last-child) {
+    margin-right: 1em;
+}
+
+.interact .like .count {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
