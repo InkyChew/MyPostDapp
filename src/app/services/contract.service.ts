@@ -17,7 +17,7 @@ export class ContractService {
   constructor() { }
 
   isNetworkValid(): boolean {
-    return this.ethereum.chainId == environment.CHAINID;
+    return this.ethereum?.chainId == environment.CHAINID;
   }
 
   switchNetwork() {
