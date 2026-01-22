@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Listener, ethers } from 'ethers';
-import { from, fromEvent } from 'rxjs';
+import { ethers } from 'ethers';
+import { from } from 'rxjs';
 import contractABI from "src/assets/LikePortal.json";
 import { IAuthor, IPost } from '../models/post';
 
